@@ -1,0 +1,141 @@
+/******************************************************************************
+** PROGRAMME                                                                 **
+**                                                                           **
+** Lieu      :  ETML                                                         **
+** Auteur    :  Guzman Jordy                                                 **
+** Date      :  10.10.2022                                                   **
+**                                                                           **
+** Modifications                                                             **
+**   Auteur  :  Guzman Jordy                                                 **
+**   Version :  1.0                                                          **
+**   Date    :  		                                                     **
+**   Raisons :  												             **
+**                                                                           **
+**                                                                           **
+******************************************************************************/
+
+/******************************************************************************
+** DESCRIPTION                                                               **
+** Calcule la taxe d'un véhicule à moteur selon un barème donné              **     
+**																	         **
+**                                                                           **
+******************************************************************************/
+
+
+
+Public Class Main{
+	private final double TAXEDEBASE = 40
+	private final double TAXEPARKG = 0.15
+	private final double POIDSLIMIT = 2000;
+	private final double TAXPARKGSUPPLEMENTAIRE = 0.3;
+	private final double TAXEPOIDSFIXESUPPLEMENTAIRE = 300;
+	private final double TAXEPARKW = 2;
+	private final double KWLIMIT = 100;
+	private final double TAXPARKWSUPPLEMENTAIRE = 3;
+	private final double TAXEPUISSANCEFIXESUPPLEMENTAIRE = 200;
+	private final double REDUCTIONMOTEURECO = 0.25;
+	private String aEssence = “Essence”; // IgnoreCase
+	private Scanner inptReader  = new Scanner(System.in);
+	private double poids = 0;
+	private double puissance = 0;
+	private double emissionCo2 = 0;
+	private String typeDeGaz = ””;
+	private double totale = 0;
+	
+public static void Main(String[] args)
+{
+	
+	
+	System.out.println("/******************************************************************************");
+	System.out.println("** 			                            									 **");
+	System.out.println("** 				BIENVENUS AU CALCULATEUR DE TAXE ETML					     **");
+	System.out.println("**                                                                           **");
+	System.out.println("******************************************************************************/");
+	
+	System.out.println();
+	System.out.println();
+	System.out.println();
+	System.out.println();
+	
+	System.out.print("Introduisez le poids de votre véhicule en Kg...");
+	poids = inptReader.nextLine();
+	
+	System.out.println();
+	System.out.print("Introduisez la puissance de votre véhicule en kW: ");
+	puissance = inptReader.nextLine();
+	System.out.println();
+
+	System.out.print("Introduisez le type de gaz utilisé par votre véhicule: );
+	typeDeGaz = inptReader.nextLine();
+	System.out.println()
+	
+	if(typeDeGaz.equalsIgnoreCase("Essence"))
+	{
+		System.out.print("Introduisez les émissions de votre véhicule au KM: );
+		emissionCo2 = inptReader.nextLine();
+		System.out.println()
+	}
+	
+	totale = CalculerTaxeTotale(poids, puissance);
+	
+}
+
+CalculerTaxePoids(poids)
+{
+	double poidsTaxe = 0;
+	poidsTaxe = TAXEDEBASE + TAXEPARKG * poids
+	return poidsTaxe;
+}
+
+CalculerTaxePoids(poids, surchargePoids)
+{
+	double poidsTaxe = 0;
+	poidsTaxe = TAXEDEBASE + TAXPARKGSUPPLEMENTAIRE * surchargePoids + TAXEPOIDSFIXESUPPLEMENTAIRE
+	return poidsTaxe;
+}
+
+CalculerTaxePuissance(puissance)
+{
+	double puissanceTaxe = 0;
+	puissanceTaxe = TAXEDEBASE + TAXEPARKW * poids + 	
+	return puissanceTaxe;
+}
+
+CalculerTaxePuissance(puissance, surcharge)
+{
+	double puissanceTaxe = 0;
+	puissanceTaxe = TAXEDEBASE + TAXEPARKW * poids + 	
+	return puissanceTaxe;
+}
+
+CalculerTaxeTotale(poids, puissance)
+{
+	double totalTaxe = 0;
+	double totalPoidsTaxe = 0;
+	double totalPuissanceTaxe = 0;
+	double surchargePoids = poids - POIDSLIMIT;
+	double surchargePuissance = puissance - KWLIMIT;
+	
+	if(poids <= POIDSLIMIT)
+	{
+		totalPoidsTaxe = CalculerTaxePoids(poids);
+	}else{
+		totalPoidsTaxe = CalculerTaxePoids(poids, surchargePoids);
+	}
+	
+	if(puissance <= KWLIMIT)
+	{
+		totalPuissanceTaxe = CalculerTaxePuissance(puissance);
+	}else{
+		totalPuissanceTaxe = CalculerTaxePoids(poids, totalPuissanceTaxe);
+	}
+	
+	if(!typeDeGaz.equalsIgnoreCase("Essence"))
+	{
+		totalTaxe = (totalPoidsTaxe + totalPuissanceTaxe * REDUCTIONMOTEURECO);
+	}else{
+		totalTaxe = (totalPoidsTaxe + totalPuissanceTaxe);
+	}
+	
+	return totalTaxe;
+}
