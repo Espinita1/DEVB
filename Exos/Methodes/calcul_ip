@@ -1,0 +1,70 @@
+import java.util.Scanner;
+
+public class Main {
+    public static void main(String[] args) {
+        //variable
+        //variable
+        String ip = "";
+        String boucle = "";
+        String redemarer = " ";
+        int tab[] = new int[2];
+        Scanner scan = new Scanner(System.in);
+        //boucle de rédémarrage du programme
+        do {
+            //récupéere les donnée utilisateur
+            System.out.println("Rentrer votre Ip xxxx.xxxx.xxxx.xxxx. :");
+            ip = scan.nextLine();
+            System.out.println(" Rentrer votre Mask xxxx.xxxx.xxxx.xxxx. :");
+            boucle = scan.nextLine();
+            //appel des autre fonction
+            tab = mettreDansTableau(ip, boucle);
+            System.out.print("l'addresse de Broadcast est ");
+            for (int x = 4; x < 8; x++)
+            {
+                System.out.print(tab[x]);
+                if(x<7) {
+                    System.out.print(".");
+                }
+            }
+            System.out.println();
+            System.out.print("l'addresse de réseau est ");
+
+            for(int x=0; x<4;x++)
+            {
+                System.out.print(tab[x]);
+                if(x<3) {
+                    System.out.print(".");
+                }
+
+            }
+            System.out.println();
+            System.out.println("Voulez vous recommencer o/n?");
+            redemarer = scan.nextLine();
+        } while (redemarer.equals("o"));
+    }
+
+    public static int[] mettreDansTableau(String ip, String netmask) {
+        String[] ipAddresse = ip.split("\\.");
+        String[] netmaskAddresse = netmask.split("\\.");
+        int[] intIP = new int[4];
+        int[] intNetmask = new int[4];
+        for (int i = 0; i < 4; i++) {
+            intIP[i] += Integer.parseInt(ipAddresse[i]);
+            intNetmask[i] += Integer.parseInt(netmaskAddresse[i]);
+        }
+
+        int[] strIpAndBroadcast = calculIp(intIP, intNetmask);
+        return strIpAndBroadcast;
+    }
+
+    public static int[] calculIp(int[] ipAddresse, int[] netmaskAddres) {
+        int[] adresseIPEtBroadcast = new int[8];
+        for (int i = 0; i < 4; i++) {
+            adresseIPEtBroadcast[i] = (ipAddresse[i] & netmaskAddres[i]);
+            adresseIPEtBroadcast[i + 4] = ipAddresse[i] | (~netmaskAddres[i] & 255);
+        }
+
+        return adresseIPEtBroadcast;
+    }
+
+}
