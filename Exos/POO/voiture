@@ -1,0 +1,113 @@
+import java.time.LocalDate;
+import java.util.EnumSet;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String model;
+        String fabricant;
+        String carburant;
+        String strDateReleaseSubaru = "1992-09-22";
+        int puissance;
+        int poids;
+        int prix;
+        int kilometrage;
+        LocalDate date = LocalDate.parse("2021-09-22");
+        LocalDate dateSubaru = LocalDate.parse(strDateReleaseSubaru);
+
+
+        Voiture ecomobile = new Voiture();
+        Voiture speedy = new Voiture("Impreza", "Subaru", 3390, 1230, "Essence", 19990,0,dateSubaru);
+
+
+        ecomobile.setModel("Audi");
+        ecomobile.setFabricant("E-tron");
+        ecomobile.setPuissance(200);
+        ecomobile.setPoids(730);
+        ecomobile.setCarburant("Electrique");
+        ecomobile.setPrix(40000);
+        ecomobile.setKilometrage(1000);
+        ecomobile.setDate(date);
+
+
+        prntln(ecomobile.getModel());
+        prntln(ecomobile.getFabricant());
+        prntln(ecomobile.getCarburant());
+        prntln(ecomobile.getKilometrage() + " km");
+        prntln(ecomobile.getAnneeMiseEnCirculation().toString());
+        prntln(ecomobile.getPrix() + " chf");
+        prntln(ecomobile.getPoids() + " kg");
+
+
+        /*
+        prntln("Insérez le modèle de la voiture : ");
+        ecomobile.setModel(sc.next());
+
+        prntln("Insérez le fabricant de la voiture : ");
+        ecomobile.setFabricant(sc.next());
+
+        prntln("Insérez la puissance de la voiture : ");
+        ecomobile.setPuissance(sc.nextInt());
+
+        prntln("Insérez le poids de la voiture : ");
+        ecomobile.setPoids(sc.nextInt());
+
+        prntln("Insérez le type de carburant de la voiture : ");
+        ecomobile.setCarburant(sc.next());
+
+        prntln("Insérez le prix de la voiture : ");
+        ecomobile.setPrix(sc.nextInt());
+
+        prntln("Insérez le kilométrage de la voiture : ");
+        ecomobile.setKilometrage(sc.nextInt());
+        */
+
+        ecomobile.avancer(15000);
+        prntln(ecomobile.getModel() + " a avancé de " + ecomobile.getKilometrage());
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // Just to print simple text because I'm lazy
+    public static void prnt(String str)
+    {
+        System.out.print(str);
+    }
+
+    public static void prntln(String str)
+    {
+        System.out.println(str);
+    }
+
+    public static void prnt(int i)
+    {
+        System.out.println(i);
+    }
+
+    public static void prntln(int i)
+    {
+        System.out.println(i);
+    }
+
+}
