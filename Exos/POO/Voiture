@@ -1,0 +1,120 @@
+import java.time.LocalDate;
+
+public class Voiture {
+    private String model;
+    private String fabricant;
+    private int puissance;
+    private int poids;
+    private String carburant;
+    private int prix;
+    private int kilometrage;
+    private LocalDate date;
+
+    /////////////////////////////////CONSTRUCTEURS////////////////////////////////////////////////////
+    public Voiture(){
+
+    }
+
+    public Voiture(String model, String fabricant, int puissance,int poids,String carburant,int prix,int kilometrage,LocalDate date){
+        this.model = model;
+        this.fabricant = fabricant;
+        this.puissance = puissance;
+        this.poids = poids;
+        this.carburant = carburant;
+        this.prix = prix;
+        this.kilometrage = kilometrage;
+        this.date = date;
+    }
+
+    ////////////////////////////////////////GETTERS/////////////////////////////////////////////
+
+    public String getModel() {
+        return model;
+    }
+
+    public String getFabricant() {
+        return fabricant;
+    }
+
+    public int getPuissance() {
+        return puissance;
+    }
+
+    public int getPoids() {
+        return poids;
+    }
+
+    public String getCarburant() {
+        return carburant;
+    }
+
+    public int getPrix() {
+        return prix;
+    }
+
+    public int getKilometrage() {
+        return kilometrage;
+    }
+
+    public LocalDate getDate() {
+        return date;
+    }
+
+    ///////////////////////////////////////SETTERS//////////////////////////////////////////////
+
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setFabricant(String fabricant) {
+        this.fabricant = fabricant;
+    }
+
+    public void setPuissance(int puissance) {
+        this.puissance = puissance;
+    }
+
+    public void setPoids(int poids) {
+        this.poids = poids;
+    }
+
+    public void setCarburant(String carburant) {
+        this.carburant = carburant;
+    }
+
+    public void setPrix(int prix) {
+        this.prix = prix;
+    }
+
+    public void setKilometrage(int kilometrage) {
+        this.kilometrage = kilometrage;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    /////////////////////////////////////FONCTIONS////////////////////////////////////////////////
+
+
+    public void augmenterPrix(int pourcentage){
+
+    }
+
+    public boolean estEcologique()
+    {
+        return true;
+    }
+
+    void avancer(int distance)
+    {
+        kilometrage += distance;
+    }
+
+    public LocalDate getAnneeMiseEnCirculation()
+    {
+        return date;
+    }
+
+
+}
